@@ -1,5 +1,6 @@
-
 import React from "react";
+import Image from '../images/plane.png';
+import BackImage from '../images/back_trans_logo.png';
 
 const Section3 = () => {
   return (
@@ -18,13 +19,16 @@ const Section3 = () => {
         </p>
       </div>
 
+      
+
       <div style={styles.imageContainer}>
-        <img
-          src="path_to_airplane_image" // Replace with the actual path to the airplane image
-          alt="Airplane"
-          style={styles.image}
-        />
-      </div>
+            <img src={Image} alt="PLane" style={styles.image} />
+        </div>
+
+        <div style={styles.imageContainer}>
+            <img src={BackImage} alt="LOGO" style={styles.image} />
+        </div>
+
 
       {/* Black Section with Features */}
       <div style={styles.featuresSection}>
@@ -50,15 +54,30 @@ const Section3 = () => {
 };
 
 const styles = {
+   /* section3: {
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        background: "linear-gradient(to bottom, white 50%, black 100%)", // Gradient color from white to black
+        color: "white",
+        overflow: "hidden",
+    },*/
+
   section3: {
     height: "100vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     background: "linear-gradient(to bottom, white 50%, black 100%)", // Gradient color from white to black
+    //backgroundImage: "url('../images/back_trans_logo.png')", // Path to your background image
+    backgroundSize: "cover", // Ensures the image covers the entire section
+    backgroundPosition: "center", // Centers the image
+    backgroundRepeat: "no-repeat", // Prevents tiling
     color: "white",
     overflow: "hidden",
   },
+
   content: {
     position: 'absolute',
     padding: "40px 20px",
@@ -84,14 +103,21 @@ const styles = {
     marginTop: "30px",
   },
   imageContainer: {
+    display: "flex", // Use Flexbox for centering
+    justifyContent: "center", // Horizontally center the image
+    alignItems: "center", // Vertically center the image
+    height: "60%",
+    width: "90%", // Ensure the container spans the full width
     position: "relative",
-    textAlign: "center",
+    marginTop: '100px',
+    marginLeft: '200px',
   },
   image: {
-    width: "100%",
-    height: "auto",
-    objectFit: "cover",
+    maxWidth: "100%", // Ensure the image scales proportionally
+    maxHeight: "100%", // Prevent it from exceeding the container
+    objectFit: "contain", // Preserve the aspect ratio of the image
   },
+
   featuresSection: {
     backgroundColor: "black",
     display: "flex",
