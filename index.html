@@ -15,7 +15,7 @@
             padding: 3px;
         }
         .container td {
-            padding: 2px;
+            padding: 6px;
             margin: 1px 0;
         }
         .container p {
@@ -47,7 +47,7 @@
             background-color: #f9f9f9;
         }
         .text-color {
-            color: #87ace0
+            color: #0B5394
         }
         @media (max-width: 768px) {
             table th, table td {
@@ -81,11 +81,12 @@
 </head>
 <body>
     <div class='container'>
+    <div class='container'>
         <div class='container'>
                 <table class='table'> 
                     <tr><td style='height: 150px;'><img src='transbank_logopng' alt='TransBank Logo'></td></tr>
                     <tr><td></td></tr>
-                    <tr><td class='table2'><p class='text-color'>Шилжүүлгийн мэдээлэл</p>
+                    <tr><td class='table2'><p class='text-color'><strong>Шилжүүлгийн мэдээлэл</strong></p>
                     <p>Журналын №: <span class='text-color'>$jrno</span></p></td></tr>
                     <tr><td style='height: 10px;'></td></tr>
                     <tr><td>Гүйлгээний огноо: $postdate</td></tr>
@@ -115,7 +116,7 @@
                 <tr>
                     <td class='table1' rowspan='5' width='7%'>Хүлээн авагч</td>
                     <tr>
-                        <td class='table1' >Банкны нэр:</td>
+                        <td class='table1' >Банкны нэр</td>
                         <td class='table1' ></td>
                         <td class='table1' rowspan='4' >$amount</td>
                         <td class='table1' rowspan='4' >$curcode</td>
@@ -126,7 +127,7 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td class='table1'>Дансны дугаар:</td>
+                        <td class='table1'>Дансны дугаар</td>
                         <td class='table1'>Нэр</td>
                     </tr>
                     <tr>
@@ -141,7 +142,7 @@
                     <tr><td>Гүйлгээний утга: </td></tr>
                     <tr><td> $txnDesc</td></tr>
                     <tr><td class='table1'><hr width='99%'></hr> Шимтгэлийн мэдээлэл: ИРГЭДИЙН БАНК ХООРОНДЫН БЭЛЭН БУС ГҮЙЛГЭЭНИЙ ШИМТГЭЛ 200 MNT</td></tr>
-                    <tr><td>Танд баярлалаа</td></tr>
+                    <tr><td>Танд баярлалаа. </td></tr>
                     <tr><td><hr width='99%'></td></tr>
                     <tr><td>Гүйлгээний баримтыг баталгаажуулсан</td></tr>
                     <tr><td>Салбар, тооцооны төв:</td></tr>
@@ -152,5 +153,6 @@
                     <tr><td class='table_date' style='height: 20px;'>Огноо:______Он ___Сар ___Өдөр</td></tr>
                 </table>
     </div>
+</div>
 </body>
 </html>
