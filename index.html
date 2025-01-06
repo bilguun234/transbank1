@@ -84,12 +84,12 @@
     <div class='container'>
         <div class='container'>
                 <table class='table'> 
-                    <tr><td style='height: 150px;'><img src='transbank_logopng' alt='TransBank Logo'></td></tr>
+                    <tr><td style='height: 50px;'><img src='transbank_logopng' alt='TransBank Logo'></td></tr>
                     <tr><td></td></tr>
                     <tr><td class='table2'><p class='text-color'><strong>Шилжүүлгийн мэдээлэл</strong></p>
-                    <p>Журналын №: <span class='text-color'>$jrno</span></p></td></tr>
+                    <p>Журналын №: <span class='text-color'>{$jrno}</span></p></td></tr>
                     <tr><td style='height: 10px;'></td></tr>
-                    <tr><td>Гүйлгээний огноо: $postdate</td></tr>
+                    <tr><td>Гүйлгээний огноо: {$posDate}</td></tr>
                     <tr><td><hr width='99%'></td></tr>
                 </table>
         </div>
@@ -104,11 +104,11 @@
                     <td class='table1' width='5%'>Ханш</td>
                 </tr>
                 <tr>
-                    <td class='table1'>$acntno</td>
-                    <td class='table1' style='height: 20px;'>БИЛГҮҮН АЛТАЙ</td>
-                    <td class='table1'>$amount</td>
-                    <td class='table1' width='5%'>$curcode</td>
-                    <td class='table1'>$cur_rate</td>
+                    <td class='table1'>{$acntCode}</td>
+                    <td class='table1' style='height: 20px;'>{$acntName}</td>
+                    <td class='table1'>{$txnAmount}</td>
+                    <td class='table1' width='5%'>{$curCode}</td>
+                    <td class='table1'>{$curRate}</td>
                 </tr>
                 <tr>
                     <td class='table1' colspan='6' style='height: 15px;'></td>
@@ -118,9 +118,9 @@
                     <tr>
                         <td class='table1' >Банкны нэр</td>
                         <td class='table1' ></td>
-                        <td class='table1' rowspan='4' >$amount</td>
-                        <td class='table1' rowspan='4' >$curcode</td>
-                        <td class='table1' rowspan='4' >$cur_rate</td>
+                        <td class='table1' rowspan='4' >{$txnAmount}</td>
+                        <td class='table1' rowspan='4' >{$curCode}</td>
+                        <td class='table1' rowspan='4' >{$curRate}</td>
                     </tr>
                     <tr>
                         <td class='table1'>ХААН БАНК</td>
@@ -131,8 +131,8 @@
                         <td class='table1'>Нэр</td>
                     </tr>
                     <tr>
-                        <td class='table1'>5017530783</td>
-                        <td class='table1'>АЛТАЙ БИЛГҮҮН</td>
+                        <td class='table1'>{$orgacntCode}</td>
+                        <td class='table1'>{$orgacntName}</td>
                     </tr>
                 </tr> 
             </table>
@@ -140,7 +140,7 @@
         </div>
                 <table class='table'>
                     <tr><td>Гүйлгээний утга: </td></tr>
-                    <tr><td> $txnDesc</td></tr>
+                    <tr><td> {$txnDesc}</td></tr>
                     <tr><td class='table1'><hr width='99%'></hr> Шимтгэлийн мэдээлэл: ИРГЭДИЙН БАНК ХООРОНДЫН БЭЛЭН БУС ГҮЙЛГЭЭНИЙ ШИМТГЭЛ 200 MNT</td></tr>
                     <tr><td>Танд баярлалаа. </td></tr>
                     <tr><td><hr width='99%'></td></tr>
