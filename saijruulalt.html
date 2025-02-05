@@ -1,0 +1,345 @@
+public function emailBody($txnType, $custLang, $jrno, $posDate, $acntCode, $acntName, $txnAmount, $curCode, $curRate, $txnDesc, $orgacntCode, $orgacntName, $orgacntBank, $txnDesc2)  
+    {  
+        $txnAmountFormat = number_format($txnAmount, 2);
+       
+        if ($txnType === "DEC") {
+            // For "DEC" (successful transaction)
+            if ($custLang === "EN") {
+                $mailSubject = "Transaction notification (Successful)";
+                $mailBody = "
+                <!DOCTYPE html>
+                <html lang='mn'>
+                <head>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=10'>
+                    <title>Шилжүүлгийн Мэдээлэл</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 20px;
+                        }
+                        .container {
+                            border: 1px solid #ddd;
+                        padding: 5px;
+                        margin: auto;
+                        max-width: 100%;
+                        overflow-x: auto;
+                        }
+                        .container td {
+                            padding: 6px;
+                            margin: 1px 0;
+                        }
+                        .container p {
+                            margin: 0px 0;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 0px;
+                        }
+                        .table1 {
+                            border-collapse: collapse;
+                            margin-bottom: 0px;
+                            font-size: 14px;
+                        }
+                        .table2 {
+                            margin-top: 1px;
+                            margin-bottom: 1px
+                        }
+                        .table_date {
+                            text-align: center;
+                        }
+                        table th, table td {
+                            padding: 10px;
+                            text-align: left;
+                            border: 1px solid #ccc;
+                        }
+                        table th {
+                            background-color: #f9f9f9;
+                        }
+                        .text-color {
+                            color: #0B5394
+                        }
+                        @media (max-width: 768px) {
+                            table th, table td {
+                                font-size: 14px;
+                                padding: 8px;
+                            }
+                            .table1 {
+                                font-size: 14px;
+                            }
+                        }
+                        @media (max-width: 360px) {
+                            table th, table td {
+                                display: block;
+                                width: 100%;
+                                text-align: left;
+                                border: none;
+                                height:40px;
+                            }
+                            table th {
+                                background-color: transparent;
+                                font-weight: bold;
+                                text-align: left;
+                                margin-top: 14px;
+                            }
+                            .table1 {
+                                font-size: 14px;
+                            }
+                       
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class='container'>
+                    <div class='container'>
+                        <div class='container'>
+                                <table class='table'>
+                                    <tr><td style='height: 50px;'><img src='/acnt_logo.png'></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td class='table2'><p class='text-color'><strong>Transaction Information</strong></p>
+                                    <p>Journal №: <span class='text-color'>{$jrno}</span></p></td></tr>
+                                    <tr><td style='height: 10px;'></td></tr>
+                                    <tr><td>Transaction date: {$posDate}</td></tr>
+                                    <tr><td><hr width='99%'></td></tr>
+                                </table>
+                        </div>
+               
+                        <div class='container'>
+                            <table>
+                                <tr>
+                                    <td class='table1' rowspan='2' width='7%'>Sender</td>
+                                    <td class='table1' width='31%'>Account number</td>
+                                    <td class='table1' width='29%'>Name</td>
+                                    <td class='table1' width='28%' colspan='2'>Amount</td>
+                                    <td class='table1' width='5%'>Rate</td>
+                                </tr>
+                                <tr>
+                                    <td class='table1'>{$acntCode}</td>
+                                    <td class='table1' style='height: 20px;'>{$acntName}</td>
+                                    <td class='table1'>{$txnAmount}</td>
+                                    <td class='table1' width='5%'>{$curCode}</td>
+                                    <td class='table1'>{$curRate}</td>
+                                </tr>
+                                <tr>
+                                    <td class='table1' colspan='6' style='height: 15px;'></td>
+                                </tr>
+                                <tr>
+                                    <td class='table1' rowspan='5' width='7%'>Receiver</td>
+                                    <tr>
+                                        <td class='table1' >Bank Name</td>
+                                        <td class='table1' ></td>
+                                        <td class='table1' rowspan='4' >{$txnAmount}</td>
+                                        <td class='table1' rowspan='4' >{$curCode}</td>
+                                        <td class='table1' rowspan='4' >{$curRate}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='table1'>{$orgacntBank}</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class='table1'>Account Number:</td>
+                                        <td class='table1'>Name:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='table1'>{$orgacntCode}</td>
+                                        <td class='table1'>{$orgacntName}</td>
+                                    </tr>
+                                </tr>
+                            </table>
+                       
+                        </div>
+                                <table class='table'>
+                                    <tr><td>Transaction Description: </td></tr>
+                                    <tr><td> {$txnDesc}</td></tr>
+                                    <tr><td class='table1'><hr width='99%'></hr> Fee Information: {$txnDesc2}</td></tr>
+                                    <tr><td>Thank You. </td></tr>
+                                    <tr><td><hr width='99%'></td></tr>
+                                    <tr><td>Transaction confirmed by</td></tr>
+                                    <tr><td>Branch, Service Center:</td></tr>
+                                    <td>Signature:</td>
+                                    <tr><td>Stamp: </td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td class='table_date' style='height: 20px;'>Date:______Year ___Month ___Day</td></tr>
+                                </table>
+                    </div>
+                </div>
+                </body>
+                </html>";
+            } else {
+                $mailSubject = "Гүйлгээний мэдээлэл (Амжилттай)";
+                $mailBody = "
+                <!DOCTYPE html>
+                <html lang='mn'>
+                <head>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=10'>
+                    <title>Шилжүүлгийн Мэдээлэл</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 20px;
+                        }
+                        .container {
+                            border: 1px solid #ddd;
+                        padding: 5px;
+                        margin: auto;
+                        max-width: 100%;
+                        overflow-x: auto;
+                        }
+                        .container td {
+                            padding: 6px;
+                            margin: 1px 0;
+                        }
+                        .container p {
+                            margin: 0px 0;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 0px;
+                        }
+                        .table1 {
+                            border-collapse: collapse;
+                            margin-bottom: 0px;
+                            font-size: 14px;
+                        }
+                        .table2 {
+                            margin-top: 1px;
+                            margin-bottom: 1px
+                        }
+                        .table_date {
+                            text-align: center;
+                        }
+                        table th, table td {
+                            padding: 10px;
+                            text-align: left;
+                            border: 1px solid #ccc;
+                        }
+                        table th {
+                            background-color: #f9f9f9;
+                        }
+                        .text-color {
+                            color: #0B5394
+                        }
+                        @media (max-width: 768px) {
+                            table th, table td {
+                                font-size: 14px;
+                                padding: 8px;
+                            }
+                            .table1 {
+                                font-size: 14px;
+                            }
+                        }
+                        @media (max-width: 360px) {
+                            table th, table td {
+                                display: block;
+                                width: 100%;
+                                text-align: left;
+                                border: none;
+                                height:40px;
+                            }
+                            table th {
+                                background-color: transparent;
+                                font-weight: bold;
+                                text-align: left;
+                                margin-top: 10px;
+                            }
+                            .table1 {
+                                font-size: 14px;
+                            }
+                       
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class='container'>
+                    <div class='container'>
+                        <div class='container'>
+                                <table class='table'>
+                                    <tr><td style='height: 50px;'><img src='/acnt_logo.png'></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td class='table2'><p class='text-color'><strong>Шилжүүлгийн мэдээлэл</strong></p>
+                                    <p>Журналын №: <span class='text-color'>{$jrno}</span></p></td></tr>
+                                    <tr><td style='height: 10px;'></td></tr>
+                                    <tr><td>Гүйлгээний огноо: {$posDate}</td></tr>
+                                    <tr><td><hr width='99%'></td></tr>
+                                </table>
+                        </div>
+               
+                        <div class='container'>
+                            <table>
+                                <tr>
+                                    <td class='table1' rowspan='2' width='7%'>Илгээгч</td>
+                                    <td class='table1' width='31%'>Дансны дугаар</td>
+                                    <td class='table1' width='29%'>Нэр</td>
+                                    <td class='table1' width='28%' colspan='2'>Дүн</td>
+                                    <td class='table1' width='5%'>Ханш</td>
+                                </tr>
+                                <tr>
+                                    <td class='table1'>{$acntCode}</td>
+                                    <td class='table1' style='height: 20px;'>{$acntName}</td>
+                                    <td class='table1'>{$txnAmount}</td>
+                                    <td class='table1' width='5%'>{$curCode}</td>
+                                    <td class='table1'>{$curRate}</td>
+                                </tr>
+                                <tr>
+                                    <td class='table1' colspan='6' style='height: 15px;'></td>
+                                </tr>
+                                <tr>
+                                    <td class='table1' rowspan='5' width='7%'>Хүлээн авагч</td>
+                                    <tr>
+                                        <td class='table1' >Банкны нэр</td>
+                                        <td class='table1' ></td>
+                                        <td class='table1' rowspan='4' >{$txnAmount}</td>
+                                        <td class='table1' rowspan='4' >{$curCode}</td>
+                                        <td class='table1' rowspan='4' >{$curRate}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='table1'>{$orgacntBank}</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class='table1'>Дансны дугаар</td>
+                                        <td class='table1'>Нэр</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='table1'>{$orgacntCode}</td>
+                                        <td class='table1'>{$orgacntName}</td>
+                                    </tr>
+                                </tr>
+                            </table>
+                       
+                        </div>
+                                <table class='table'>
+                                    <tr><td>Гүйлгээний утга: </td></tr>
+                                    <tr><td> {$txnDesc}</td></tr>
+                                    <tr><td class='table1'><hr width='99%'></hr> Шимтгэлийн мэдээлэл: {$txnDesc2}</td></tr>
+                                    <tr><td>Танд баярлалаа. </td></tr>
+                                    <tr><td><hr width='99%'></td></tr>
+                                    <tr><td>Гүйлгээний баримтыг баталгаажуулсан</td></tr>
+                                    <tr><td>Салбар, тооцооны төв:</td></tr>
+                                    <td>Гарын үсэг:</td>
+                                    <tr><td>Тамга: </td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td class='table_date' style='height: 20px;'>Огноо:______Он ___Сар ___Өдөр</td></tr>
+                                </table>
+                    </div>
+                </div>
+                </body>
+                </html>";
+            }
+        } elseif ($txnType === "INC") {
+            if ($custLang === "EN") {
+                $mailSubject = "Transaction notification";
+                $mailBody = "<html><body><p>Incoming transaction details.</p></body></html>";
+            } else {
+                $mailSubject = "Гүйлгээний мэдээлэл";
+                $mailBody = "<html><body><p>Ор incoming transaction details.</p></body></html>";
+            }
+        }
+ 
+        return ['subject' => $mailSubject, 'body' => $mailBody];
+    }
